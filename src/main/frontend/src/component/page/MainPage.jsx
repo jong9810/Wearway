@@ -1,36 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ItemButton from "../ui/ItemButton";
 
-const Wrapper = styled.div`
-    padding: 16px;
-    width: calc(100% - 32px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-const Container = styled.div`
-    width: 100%;
-    max-width: 720px;
-
-    :not(:last-child) {
-        margin-bottom: 16px;
-    }
-`;
-
-function MainPage(props) {
-    const navigate = useNavigate();
-
+function Main(props) {
     return (
-        <Wrapper>
-            <Container>
-                <ItemButton img src="../img/ItemImg.png" alt=""></ItemButton>
-            </Container>
-        </Wrapper>
+        <>
+            <h3>MainPage</h3>
+            <ul>
+                <Link to="/Product/1"><li>1번상품</li></Link>
+                <Link to="/Product/2"><li>2번상품</li></Link>
+            </ul>
+        </>
     );
 }
 
-export default MainPage;
+export default Main;
