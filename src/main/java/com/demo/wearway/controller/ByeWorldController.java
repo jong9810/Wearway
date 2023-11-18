@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloWorldController {
+public class ByeWorldController {
 
-    @GetMapping("/api/hello")
+    @GetMapping("/api/main")
     public String test() {
-        return "Hello, hi world!";
+        return "Wearway";
     }
 }

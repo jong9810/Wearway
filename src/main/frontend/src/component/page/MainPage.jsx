@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ItemButton from "../ui/ItemButton";
+import axios from "axios";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -23,6 +24,10 @@ const Container = styled.div`
 
 function MainPage(props) {
     const navigate = useNavigate();
+    const [hello, setHello] = useState('')
+    useEffect(() => {
+        axios.get('/api/main').then(response => setHello(response.data)).catch(error => console.log(error))
+    }, []);
 
     return (
         <Wrapper>
