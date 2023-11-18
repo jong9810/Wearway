@@ -12,18 +12,19 @@ import java.time.LocalDateTime;
 @Table(name = "notice")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Notice {
+public class Notice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notice_id;
+    @Column(name = "notice_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(nullable = false, length = 1)
-    private String notice_type;
+    @Column(name = "notice_type", nullable = false, length = 1)
+    private String noticeType;
 
     @Column(nullable = false, length = 200)
     private String title;
@@ -33,7 +34,5 @@ public class Notice {
 
     @ColumnDefault("0")
     private int view_cnt;
-
-    private LocalDateTime rdate;
 
 }

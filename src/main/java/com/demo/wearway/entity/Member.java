@@ -1,7 +1,7 @@
 package com.demo.wearway.entity;
 
 import com.demo.wearway.entity.enumerate.Gender;
-import com.demo.wearway.entity.enumerate.UserOrAdmin;
+import com.demo.wearway.entity.enumerate.Role;
 import com.demo.wearway.entity.enumerate.YesOrNo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -13,11 +13,15 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
+
     @Column(nullable = false, length = 20)
-    private String member_id;
+    private String nick;
 
     @Column(nullable = false, length = 60)
     private String pw;
@@ -35,21 +39,22 @@ public class Member {
     private String jumin;
 
     @Column(length = 1, nullable = false)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault("'N'")
     private Gender gender;
 
-    @Column(length = 1)
+    @Column(name = "is_banned", length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private YesOrNo is_banned;
+    private YesOrNo isBanned;
 
-    @Column(length = 1)
+    @Column(name = "is_signout", length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private YesOrNo is_signout;
+    private YesOrNo isSignout;
 
     @Column(length = 10)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'USER'")
-    private UserOrAdmin role;
+    private Role role;
 }

@@ -11,11 +11,12 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "member_address")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberAddress {
+public class MemberAddress extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long address_id;
+    @Column(name = "address_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -35,8 +36,8 @@ public class MemberAddress {
     @ColumnDefault("'조심히 안전하게 와주세요.'")
     private String request;
 
-    @Column(length = 1)
+    @Column(name = "is_default", length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private YesOrNo is_default;
+    private YesOrNo isDefault;
 }

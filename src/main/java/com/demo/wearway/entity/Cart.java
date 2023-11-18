@@ -16,7 +16,8 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cart_id;
+    @Column(name = "cart_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -28,7 +29,5 @@ public class Cart {
 
     @ColumnDefault("1")
     private int cnt;
-
-    private LocalDateTime rdate;
 
 }

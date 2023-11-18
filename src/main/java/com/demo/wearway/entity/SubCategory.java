@@ -13,14 +13,18 @@ public class SubCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable=false, updatable=false)
-    private Long sub_category_id;
+    @Column(name = "sub_category_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sup_category_id")
     private SupCategory supCategory;
 
-    @Column(nullable = false, length = 30)
-    private String sub_name;
+    @Column(name = "sub_category_name", nullable = false, length = 30)
+    private String name;
 
+    public SubCategory(SupCategory supCategory, String name) {
+        this.supCategory = supCategory;
+        this.name = name;
+    }
 }

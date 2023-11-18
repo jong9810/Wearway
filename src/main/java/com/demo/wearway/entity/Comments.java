@@ -11,11 +11,12 @@ import java.time.LocalDateTime;
 @Table(name = "comments")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comments {
+public class Comments extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comments_id;
+    @Column(name = "comments_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
@@ -24,5 +25,4 @@ public class Comments {
     @Column(nullable = false, length = 150)
     private String content;
 
-    private LocalDateTime rdate;
 }
