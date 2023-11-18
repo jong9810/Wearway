@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -28,14 +29,23 @@ function MainPage(props) {
     useEffect(() => {
         axios.get('/api/main').then(response => setHello(response.data)).catch(error => console.log(error))
     }, []);
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+>>>>>>> c470da368059754216f8474a4e15eefd34a803a9
 
+function Main(props) {
     return (
-        <Wrapper>
-            <Container>
-                <ItemButton img src="../img/ItemImg.png" alt=""></ItemButton>
-            </Container>
-        </Wrapper>
+        <>
+            <h3>MainPage</h3>
+            <ul>
+                <Link to="/Product/1"><li>1번상품</li></Link>
+                <Link to="/Product/2"><li>2번상품</li></Link>
+            </ul>
+        </>
     );
 }
 
-export default MainPage;
+export default Main;
