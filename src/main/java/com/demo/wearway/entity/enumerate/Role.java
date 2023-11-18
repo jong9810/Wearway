@@ -1,5 +1,5 @@
 package com.demo.wearway.entity.enumerate;
 
-public enum UserOrAdmin {
+public enum Role {
     USER, ADMIN
 }

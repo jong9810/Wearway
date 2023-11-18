@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Table(name = "product")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long product_id;
+    @Column(name = "product_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_category_id")
@@ -34,16 +35,36 @@ public class Product {
     @Column(nullable = false)
     private int price; // 정가
 
-    private int sale; // 세일이 적용된 판매가
+    @Column(name = "sale_percent")
+    private int salePercent;
 
-    private LocalDateTime rdate;
+    @Column(name = "sale_price")
+    private int salePrice; // 세일이 적용된 판매가
 
-    @Column(nullable = false)
-    private int cnt;
+    @Column(name = "stock_quantity", nullable = false)
+    private int stockQuantity;
 
-    @Column(length = 1)
+    @Column(name = "is_deleted", length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'N'")
-    private YesOrNo is_deleted;
+    private YesOrNo isDeleted;
 
+    public Product(SubCategory subCategory, String name, String img1, String content, int price, int stockQuantity) {
+        this.subCategory = subCategory;
+        this.name = name;
+        this.img1 = img1;
+        this.content = content;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
+    public void applySalePrice(int salePercent) {
+        this.salePercent = salePercent;
+        double salePercentDouble = (100 - salePercent) / 100.0;
+        this.salePrice = (int) Math.round(this.price * salePercentDouble);
+    }
+
+    public void deleteProduct() {
+        this.isDeleted = YesOrNo.Y;
+    }
 }

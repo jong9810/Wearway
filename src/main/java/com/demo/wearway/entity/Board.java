@@ -12,11 +12,12 @@ import java.time.LocalDateTime;
 @Table(name = "board")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board {
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long board_id;
+    @Column(name = "board_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -26,13 +27,11 @@ public class Board {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(nullable = false, length = 1)
-    private String board_type;
+    @Column(name = "board_type", nullable = false, length = 1)
+    private String boardType;
 
     @Column(nullable = false, length = 100)
     private String title;
-
-    private LocalDateTime rdate;
 
     @Column(nullable = false, length = 300)
     private String content;

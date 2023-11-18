@@ -16,10 +16,13 @@ public class SupCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable=false, updatable=false)
-    private Long sup_category_id;
+    @Column(name = "sup_category_id")
+    private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String sup_name;
+    @Column(name = "sup_category_name", nullable = false, length = 30)
+    private String name;
 
+    public SupCategory(String name) {
+        this.name = name;
+    }
 }

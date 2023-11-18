@@ -36,6 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-#
+# additional ignore
 application.properties
 application.yml
+node_modules/
+generated/
+build/

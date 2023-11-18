@@ -14,20 +14,22 @@ import java.time.LocalDateTime;
 @Table(name = "order_total")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OrderTotal {
+public class OrderTotal extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long order_id;
+    @Column(name = "order_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(nullable = false)
-    private int total_price;
+    @Column(name = "total_price", nullable = false)
+    private int totalPrice;
 
-    private LocalDateTime order_date;
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
 
     @Column(length = 20)
     private String card;
@@ -37,8 +39,8 @@ public class OrderTotal {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @Column(length = 300)
-    private String refund_reason;
+    @Column(name = "refund_reason", length = 300)
+    private String refundReason;
 
     @Column(nullable = false, length = 20)
     private String name; // 받는분 이름
@@ -54,12 +56,13 @@ public class OrderTotal {
     @ColumnDefault("'조심히 안전하게 와주세요.'")
     private String request;
 
-    private int item_cnt;
+    @Column(name = "item_cnt")
+    private int itemCnt;
 
-    @Column(length = 150)
-    private String item_name;
+    @Column(name = "item_name", length = 150)
+    private String itemName;
 
-    @Column(length = 600)
-    private String item_img;
+    @Column(name = "item_img", length = 600)
+    private String itemImg;
 
 }

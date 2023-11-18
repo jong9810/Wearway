@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "wish")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Wish {
+public class Wish extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wish_id;
+    @Column(name = "wish_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
